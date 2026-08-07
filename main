@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Untuk Haliza Cahyati Ramadhan</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #0b0b14;
+            color: #fff;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* ===== BACKGROUND LAYER ===== */
+        .bg-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: radial-gradient(ellipse at 30% 30%, #2a1b2e, #0b0b14 80%);
+            overflow: hidden;
+        }
+
+        /* --- BINTANG BERKEDIP --- */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle var(--d) ease-in-out infinite alternate;
+            box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.3);
+        }
+        @keyframes twinkle {
+            0% {
+                opacity: 0.2;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
+        /* --- GARIS CAHAYA BERGERAK (sinar) --- */
+        .rays {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 77, 109, 0.03), transparent, rgba(255, 77, 109, 0.03), transparent);
+            animation: spinRays 40s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes spinRays {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* --- HEART FLOATING --- */
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .heart-float {
+            position: absolute;
+            bottom: -60px;
+            font-size: 1.8rem;
+            animation: floatUp linear infinite;
+            opacity: 0.5;
+            color: #ff4d6d;
+            text-shadow: 0 0 20px rgba(255, 77, 109, 0.3);
+            user-select: none;
+        }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.6);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-110vh) rotate(720deg) scale(1.4);
+                opacity: 0;
+            }
+        }
+
+        /* ===== SLIDER ===== */
+        .slider {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.92) rotateX(5deg);
+            width: 92%;
+            max-width: 700px;
+            padding: 30px 28px 40px;
+            background: rgba(18, 18, 28, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 32px;
+            border: 1px solid rgba(255, 77, 109, 0.15);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(255, 77, 109, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.9s cubic-bezier(0.23, 1, 0.32, 1),
+                transform 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+            pointer-events: none;
+            will-change: transform, opacity;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1) rotateX(0deg);
+            pointer-events: auto;
+            z-index: 10;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ff4d6d, #ff8c9e, #ff4d6d);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmerText 4s ease-in-out infinite;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 40px rgba(255, 77, 109, 0.2);
+        }
+        @keyframes shimmerText {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .slide p {
+            font-size: 1.05rem;
+            line-height: 1.75;
+            max-width: 580px;
+            color: rgba(235, 235, 245, 0.92);
+            margin-bottom: 18px;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+        }
+        .slide p:last-of-type {
+            margin-bottom: 22px;
+        }
+
+        .highlight {
+            color: #ff8c9e;
+            font-weight: 500;
+            text-shadow: 0 0 20px rgba(255, 77, 109, 0.15);
+        }
+
+        /* ===== TOMBOL ===== */
+        button {
+            background: linear-gradient(135deg, #ff4d6d, #e63a5a);
+            color: #fff;
+            border: none;
+            padding: 14px 34px;
+            font-size: 1.05rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 24px rgba(255, 77, 109, 0.35);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            outline: none;
+        }
+        button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+            transform: scale(0.5);
+        }
+        button:hover::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+        button:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 40px rgba(255, 77, 109, 0.5);
+        }
+        button:active {
+            transform: scale(0.96);
+        }
+
+        /* ===== SCRATCH CARD ===== */
+        .scratch-container {
+            position: relative;
+            width: 100%;
+            max-width: 340px;
+            height: 160px;
+            margin: 12px auto 18px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(255, 77, 109, 0.15);
+            border: 2px solid rgba(255, 77, 109, 0.3);
+        }
+        .scratch-text {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #1a1a2e;
+            color: #f0e6ea;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 18px;
+            text-align: center;
+            box-sizing: border-box;
+            line-height: 1.5;
+        }
+        .scratch-text::before {
+            content: '❤️';
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            font-size: 1.2rem;
+            opacity: 0.3;
+        }
+        #scratchCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: crosshair;
+            border-radius: 14px;
+        }
+
+        /* ===== BUTTON GROUP ===== */
+        .btn-group {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 8px;
+        }
+        #btnNo {
+            background: linear-gradient(135deg, #4a4a5a, #3a3a4a);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            transition: all 0.25s ease;
+            position: relative;
+        }
+        #btnNo:hover {
+            background: linear-gradient(135deg, #5a5a6a, #4a4a5a);
+        }
+
+        /* ===== TYPING CURSOR ===== */
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.1em;
+            background: #ff4d6d;
+            margin-left: 4px;
+            vertical-align: text-bottom;
+            animation: blinkCursor 0.8s step-end infinite;
+        }
+        @keyframes blinkCursor {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* ===== CONFETTI ===== */
+        .confetti-piece {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -20px;
+            z-index: 999;
+            pointer-events: none;
+            opacity: 0;
+            animation: confettiFall linear forwards;
+        }
+        @keyframes confettiFall {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(110vh) rotate(720deg) scale(0.2);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            .slide {
+                padding: 22px 16px 30px;
+                width: 94%;
+                border-radius: 24px;
+            }
+            h1 {
+                font-size: 1.7rem;
+            }
+            .slide p {
+                font-size: 0.95rem;
+            }
+            button {
+                padding: 12px 24px;
+                font-size: 0.95rem;
+            }
+            .scratch-container {
+                height: 130px;
+            }
+            .btn-group {
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== BACKGROUND LAYER ===== -->
+    <div class="bg-layer">
+        <div class="stars" id="stars"></div>
+        <div class="rays"></div>
+        <div class="floating-hearts" id="floatingHearts"></div>
+    </div>
+
+    <!-- ===== SLIDER ===== -->
+    <div class="slider" id="slider">
+
+        <!-- SLIDE 1 -->
+        <div class="slide active" data-slide="0">
+            <h1 id="typingTitle">Halo, Haliza Cahyati Ramadhan.</h1>
+            <p id="typingSub">Ini Bayu Andriyan. Hari Girlfriend Nasional itu tanggal 1 Agustus. Sekarang sudah lewat seminggu.</p>
+            <p>Secara logis, ini adalah keterlambatan yang parah. Aku tidak akan mencari alasan bodoh untuk membenarkannya. Aku hanya ingin mengakui bahwa aku telat, dan meminta maaf.</p>
+            <button onclick="nextSlide()">Lanjut</button>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide" data-slide="1">
+            <h1>Ada Pesan Tersembunyi</h1>
+            <p>Jangan hanya diam. Gosok layar abu-abu di bawah ini menggunakan jari atau kursor.</p>
+            <div class="scratch-container">
+                <div class="scratch-text">Walau faktanya aku telat, logikaku tetap memprioritaskanmu di atas variabel lainnya.</div>
+                <canvas id="scratchCanvas" width="340" height="160"></canvas>
+            </div>
+            <button onclick="nextSlide()">Lanjut</button>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide" data-slide="2">
+            <h1>Analisis Fakta</h1>
+            <p>Kenapa aku masih bersusah payah membuat ini meski sudah lewat 7 hari?</p>
+            <p>Karena mengabaikanmu sama sekali adalah sebuah <span class="highlight">cacat logika</span>. Menghadapi keras kepalamu jauh lebih masuk akal daripada membiarkan tanggal ini terlewat begitu saja.</p>
+            <button onclick="nextSlide()">Lanjut</button>
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="slide" data-slide="3">
+            <h1>Realita</h1>
+            <p>Aku mungkin bukan pria dengan akurasi waktu terbaik untuk perayaan klise semacam ini. Tapi aku tahu apa yang bernilai untuk dipertahankan.</p>
+            <p><span class="highlight">Keterlambatan waktu tidak mendiskon kadar perasaanku padamu, Haliza.</span></p>
+            <button onclick="nextSlide()">Lanjut</button>
+        </div>
+
+        <!-- SLIDE 5 -->
+        <div class="slide" data-slide="4">
+            <h1>Keputusan Akhir</h1>
+            <p>Mengingat semua data dan pengakuanku, apakah keterlambatan 1 minggu ini dimaafkan?</p>
+            <div class="btn-group">
+                <button onclick="handleYes()">Ya, Dimaafkan</button>
+                <button id="btnNo" onmouseover="dodge()" onclick="dodge()">Tidak</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ============================================================
+        //  1.  STARS
+        // ============================================================
+        (function createStars() {
+            const container = document.getElementById('stars');
+            const count = 180;
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = 1.5 + Math.random() * 3.5;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.setProperty('--d', (2 + Math.random() * 4) + 's');
+                star.style.animationDelay = (Math.random() * 6) + 's';
+                container.appendChild(star);
+            }
+        })();
+
+        // ============================================================
+        //  2.  FLOATING HEARTS
+        // ============================================================
+        (function createHearts() {
+            const container = document.getElementById('floatingHearts');
+            const emojis = ['❤️', '💖', '💗', '♥️', '💕', '🌸', '✨'];
+            for (let i = 0; i < 14; i++) {
+                const el = document.createElement('div');
+                el.className = 'heart-float';
+                el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                el.style.left = Math.random() * 95 + '%';
+                el.style.fontSize = (1.2 + Math.random() * 1.8) + 'rem';
+                el.style.animationDuration = (12 + Math.random() * 18) + 's';
+                el.style.animationDelay = (Math.random() * 20) + 's';
+                el.style.opacity = 0.3 + Math.random() * 0.4;
+                container.appendChild(el);
+            }
+        })();
+
+        // ============================================================
+        //  3.  TYPING EFFECT (Slide 1)
+        // ============================================================
+        (function typeEffect() {
+            const titleEl = document.getElementById('typingTitle');
+            const subEl = document.getElementById('typingSub');
+            const fullTitle = 'Halo, Haliza Cahyati Ramadhan.';
+            const fullSub = 'Ini Bayu Andriyan. Hari Girlfriend Nasional itu tanggal 1 Agustus. Sekarang sudah lewat seminggu.';
+
+            let idxTitle = 0,
+                idxSub = 0;
+            let isTitleDone = false;
+
+            function typeTitle() {
+                if (idxTitle < fullTitle.length) {
+                    titleEl.innerHTML = fullTitle.slice(0, idxTitle + 1) + '<span class="typing-cursor"></span>';
+                    idxTitle++;
+                    setTimeout(typeTitle, 65);
+                } else {
+                    titleEl.innerHTML = fullTitle;
+                    isTitleDone = true;
+                    // mulai sub setelah jeda
+                    setTimeout(typeSub, 400);
+                }
+            }
+
+            function typeSub() {
+                if (idxSub < fullSub.length) {
+                    subEl.innerHTML = fullSub.slice(0, idxSub + 1) + '<span class="typing-cursor"></span>';
+                    idxSub++;
+                    setTimeout(typeSub, 45);
+                } else {
+                    subEl.innerHTML = fullSub;
+                }
+            }
+
+            // Mulai setelah slide aktif
+            setTimeout(typeTitle, 600);
+        })();
+
+        // ============================================================
+        //  4.  SLIDER NAVIGATION
+        // ============================================================
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                slides[currentSlide].classList.remove('active');
+                currentSlide++;
+                slides[currentSlide].classList.add('active');
+
+                // Jika slide ke-5 (indeks 4) muncul, trigger confetti
+                if (currentSlide === 4) {
+                    launchConfetti();
+                }
+            }
+        }
+
+        // ============================================================
+        //  5.  SCRATCH CARD
+        // ============================================================
+        const canvas = document.getElementById('scratchCanvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+
+        // Sesuaikan ukuran canvas dengan CSS
+        function resizeCanvas() {
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width || 340;
+            canvas.height = rect.height || 160;
+            // isi ulang layer abu-abu
+            ctx.fillStyle = '#2a2a3e';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.font = 'bold 18px Segoe UI';
+            ctx.fillStyle = '#ff4d6d';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('✦ GOSOK ✦', canvas.width / 2, canvas.height / 2);
+            ctx.font = '13px Segoe UI';
+            ctx.fillStyle = '#aaa';
+            ctx.fillText('pakai jari atau kursor', canvas.width / 2, canvas.height / 2 + 30);
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        function getPos(evt) {
+            const rect = canvas.getBoundingClientRect();
+            let cx = evt.clientX,
+                cy = evt.clientY;
+            if (evt.touches && evt.touches.length > 0) {
+                cx = evt.touches[0].clientX;
+                cy = evt.touches[0].clientY;
+            }
+            return {
+                x: (cx - rect.left) * (canvas.width / rect.width),
+                y: (cy - rect.top) * (canvas.height / rect.height)
+            };
+        }
+
+        function scratch(x, y) {
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath();
+            ctx.arc(x, y, 22, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        canvas.addEventListener('mousedown', (e) => { isDrawing = true;
+            const p = getPos(e);
+            scratch(p.x, p.y); });
+        canvas.addEventListener('mousemove', (e) => { if (isDrawing) { const p = getPos(e);
+                scratch(p.x, p.y); } });
+        canvas.addEventListener('mouseup', () => { isDrawing = false; });
+        canvas.addEventListener('mouseleave', () => { isDrawing = false; });
+
+        canvas.addEventListener('touchstart', (e) => { isDrawing = true;
+            const p = getPos(e);
+            scratch(p.x, p.y);
+            e.preventDefault(); }, { passive: false });
+        canvas.addEventListener('touchmove', (e) => { if (isDrawing) { const p = getPos(e);
+                scratch(p.x, p.y);
+                e.preventDefault(); } }, { passive: false });
+        canvas.addEventListener('touchend', () => { isDrawing = false; });
+
+        // ============================================================
+        //  6.  TOMBOL "TIDAK" MENGHINDAR
+        // ============================================================
+        function dodge() {
+            const btn = document.getElementById('btnNo');
+            const container = btn.parentElement;
+            const rect = container.getBoundingClientRect();
+            const bw = btn.offsetWidth,
+                bh = btn.offsetHeight;
+            const maxX = rect.width - bw - 10;
+            const maxY = rect.height - bh - 10;
+            const x = Math.random() * maxX;
+            const y = Math.random() * maxY;
+            btn.style.position = 'relative';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+            // sedikit efek getar
+            btn.style.transition = 'left 0.25s ease, top 0.25s ease';
+        }
+
+        // ============================================================
+        //  7.  TOMBOL "YA" - CONFETTI + ALERT
+        // ============================================================
+        function handleYes() {
+            launchConfetti(60);
+            alert('Keputusan yang logis. Terima kasih, Haliza. ❤️');
+        }
+
+        // ============================================================
+        //  8.  CONFETTI (kembang api mini)
+        // ============================================================
+        function launchConfetti(count = 70) {
+            const colors = ['#ff4d6d', '#ff8c9e', '#ffb3b3', '#ffd6e0', '#ff6f91', '#ff3b5c', '#ffb8c6'];
+            for (let i = 0; i < count; i++) {
+                const el = document.createElement('div');
+                el.className = 'confetti-piece';
+                const size = 6 + Math.random() * 10;
+                el.style.width = size + 'px';
+                el.style.height = size + 'px';
+                el.style.background = colors[Math.floor(Math.random() * colors.length)];
+                el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+                el.style.left = (Math.random() * 100) + '%';
+                el.style.top = '-10px';
+                el.style.animationDuration = (2.5 + Math.random() * 3) + 's';
+                el.style.animationDelay = (Math.random() * 1.2) + 's';
+                el.style.transform = `rotate(${Math.random() * 360}deg)`;
+                el.style.boxShadow = `0 0 8px ${el.style.background}44`;
+                document.body.appendChild(el);
+                // hapus setelah animasi selesai
+                setTimeout(() => el.remove(), 5000);
+            }
+        }
+
+        // ============================================================
+        //  9.  EFEK RIPPLE PADA SEMUA TOMBOL (opsional)
+        // ============================================================
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const ripple = document.createElement('span');
+                ripple.style.cssText = `
+                            position: absolute;
+                            width: 60px; height: 60px;
+                            background: rgba(255,255,255,0.25);
+                            border-radius: 50%;
+                            left: ${x - 30}px;
+                            top: ${y - 30}px;
+                            transform: scale(0);
+                            animation: rippleAnim 0.6s ease-out forwards;
+                            pointer-events: none;
+                        `;
+                this.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 700);
+            });
+        });
+
+        // Tambahkan keyframe untuk ripple (dinamis)
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = `
+                    @keyframes rippleAnim {
+                        to { transform: scale(4); opacity: 0; }
+                    }
+                `;
+        document.head.appendChild(styleSheet);
+
+        // ============================================================
+        //  10. EFEK PARALLAX SAAT GERAKAN MOUSE (opsional)
+        // ============================================================
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth - 0.5;
+            const y = e.clientY / window.innerHeight - 0.5;
+            document.querySelector('.rays').style.transform =
+                `translate(${x * 12}px, ${y * 8}px) rotate(${x * 8}deg)`;
+            document.querySelector('.stars').style.transform =
+                `translate(${x * 6}px, ${y * 4}px)`;
+        });
+
+        console.log('❤️ Untuk Haliza, dari Bayu — dengan segala keterlambatan dan ketulusan.');
+    </script>
+</body>
+</html>
