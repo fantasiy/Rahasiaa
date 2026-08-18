@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quest Cinta Bayu & Liza - Alay Dewa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fdfcfb 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+            animation: bgShift 10s ease infinite;
+            background-size: 400% 400%;
+            transition: background 0.5s;
+        }
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            animation: none;
+        }
+
+        @keyframes bgShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border-radius: 40px;
+            padding: 30px 25px;
+            box-shadow: 0 25px 70px rgba(255, 20, 80, 0.35), 0 0 0 6px rgba(255, 255, 255, 0.6) inset;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            animation: floatContainer 5s ease-in-out infinite;
+            transition: background 0.5s, color 0.5s;
+        }
+        body.dark-mode .container {
+            background: rgba(22, 33, 62, 0.9);
+            color: #fff;
+        }
+
+        @keyframes floatContainer {
+            0%, 100% { transform: translateY(0) rotate(-0.5deg); }
+            50% { transform: translateY(-12px) rotate(0.5deg); }
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: #ff2e63;
+            text-shadow: 0 0 15px #ff2e63, 0 0 30px #ff2e63, 0 0 60px #ff2e63;
+            animation: neonPulse 1.5s ease-in-out infinite alternate;
+            margin-bottom: 5px;
+        }
+
+        @keyframes neonPulse {
+            from { text-shadow: 0 0 10px #ff2e63, 0 0 20px #ff2e63, 0 0 40px #ff2e63; }
+            to { text-shadow: 0 0 20px #ff2e63, 0 0 40px #ff2e63, 0 0 80px #ff2e63, 0 0 120px #ff2e63; }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a10035;
+            font-weight: bold;
+            margin-bottom: 25px;
+            animation: blinkText 1.8s step-start infinite;
+        }
+        body.dark-mode .subtitle {
+            color: #ffb6c1;
+        }
+
+        @keyframes blinkText {
+            50% { opacity: 0.4; }
+        }
+
+        .top-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .countdown-box {
+            background: rgba(255, 46, 99, 0.1);
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-weight: bold;
+            color: #c4003a;
+            border: 2px solid #ff2e63;
+        }
+        body.dark-mode .countdown-box {
+            background: rgba(255, 46, 99, 0.2);
+            color: #ffb6c1;
+        }
+
+        .theme-toggle {
+            background: #ff2e63;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 46, 99, 0.4);
+        }
+        .theme-toggle:hover {
+            background: #ff5e8a;
+            transform: translateY(-3px);
+        }
+
+        .profile-flip-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .flip-card {
+            background: transparent;
+            width: 200px;
+            height: 260px;
+            perspective: 1000px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card:hover .flip-card-inner,
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .flip-card-front {
+            background: linear-gradient(145deg, #ffb6c1, #ff9a9e);
+            color: #a10035;
+            font-weight: bold;
+        }
+
+        .flip-card-back {
+            background: linear-gradient(145deg, #fff, #fecfef);
+            color: #5e001e;
+            transform: rotateY(180deg);
+            font-size: 0.9rem;
+        }
+        body.dark-mode .flip-card-back {
+            background: linear-gradient(145deg, #333, #444);
+            color: #fff;
+        }
+
+        .question-card {
+            background: rgba(255, 240, 245, 0.8);
+            border-radius: 25px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #ff2e63;
+            box-shadow: 0 8px 20px rgba(255, 46, 99, 0.2);
+            text-align: left;
+            transition: background 0.5s, color 0.5s;
+        }
+        body.dark-mode .question-card {
+            background: rgba(30, 40, 60, 0.8);
+            border-color: #ff2e63;
+        }
+
+        .question-card h2 {
+            color: #c4003a;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        body.dark-mode .question-card h2 {
+            color: #ffb6c1;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-btn {
+            background: white;
+            border: 2px solid #ffb6c1;
+            border-radius: 15px;
+            padding: 12px 18px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+            font-weight: bold;
+            color: #5e001e;
+        }
+        body.dark-mode .option-btn {
+            background: #2a3a5e;
+            border-color: #ffb6c1;
+            color: #fff;
+        }
+
+        .option-btn:hover {
+            background: #ff2e63;
+            color: white;
+            border-color: #ff2e63;
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(255, 46, 99, 0.4);
+        }
+
+        .option-btn.selected {
+            background: #ff2e63;
+            color: white;
+            border-color: #ff2e63;
+        }
+
+        .timer-bar {
+            background: #fff;
+            height: 10px;
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+            border: 1px solid #ff2e63;
+        }
+        .timer-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, #ff9a9e, #ff2e63);
+            border-radius: 10px;
+            transition: width 1s linear;
+        }
+
+        .lives {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 1.5rem;
+        }
+
+        .btn-next, .btn-finish, .btn-start {
+            background: #ff2e63;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+            box-shadow: 0 6px 0 #b30035;
+        }
+
+        .btn-next:hover, .btn-finish:hover, .btn-start:hover {
+            background: #ff5e8a;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 0 #b30035;
+        }
+
+        .btn-finish {
+            display: none;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s;
+        }
+        .modal-overlay.show {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 40px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 0 8px #ff2e63, 0 0 50px #ff2e63;
+            animation: bounceIn 0.5s;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.1); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-content h2 {
+            color: #ff2e63;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 15px rgba(255, 46, 99, 0.6);
+        }
+        .modal-content p {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .result-section {
+            display: none;
+            background: rgba(255, 220, 230, 0.8);
+            border-radius: 30px;
+            padding: 25px;
+            margin-top: 20px;
+            border: 3px dashed #ff477e;
+        }
+        body.dark-mode .result-section {
+            background: rgba(40, 50, 70, 0.8);
+            border-color: #ff477e;
+        }
+
+        .result-score {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff2e63;
+            margin: 10px 0;
+            text-shadow: 0 0 10px rgba(255, 46, 99, 0.5);
+        }
+
+        .result-message {
+            font-size: 1.2rem;
+            color: #5e001e;
+            margin: 15px 0;
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        body.dark-mode .result-message {
+            background: #2a3a5e;
+            color: #fff;
+        }
+
+        .share-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .share-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 5px 0 rgba(0,0,0,0.2);
+        }
+
+        .share-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-wa-bayu {
+            background: #25D366;
+            color: white;
+            box-shadow: 0 5px 0 #1da851;
+        }
+
+        .btn-wa-bayu:hover {
+            background: #1da851;
+            box-shadow: 0 7px 0 #128c7e;
+        }
+
+        .btn-wa-group {
+            background: #128C7E;
+            color: white;
+            box-shadow: 0 5px 0 #0e6b5c;
+        }
+
+        .btn-wa-group:hover {
+            background: #075E54;
+            box-shadow: 0 7px 0 #054c44;
+        }
+
+        .btn-reset {
+            background: #ffb6c1;
+            color: #a10035;
+            box-shadow: 0 5px 0 #c48a94;
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-reset:hover {
+            background: #ff9a9e;
+            transform: translateY(-3px);
+        }
+
+        .progress-bar {
+            background: #fff;
+            height: 20px;
+            border-radius: 20px;
+            margin: 15px 0;
+            overflow: hidden;
+            border: 2px solid #ff2e63;
+        }
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff9a9e, #ff2e63);
+            border-radius: 20px;
+            transition: width 0.4s ease;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .confetti-piece {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff2e63;
+            z-index: 2000;
+            animation: confettiFall 2s ease-in forwards;
+        }
+        @keyframes confettiFall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .question-card h2 { font-size: 1.1rem; }
+            .option-btn { font-size: 0.9rem; }
+            .flip-card { width: 150px; height: 200px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QUEST CINTA</h1>
+        <p class="subtitle">😭✨ Buktikan Kalau Bayu Itu Sempurna ✨😭</p>
+
+        <div class="top-info">
+            <div class="countdown-box" id="countdown"></div>
+            <div class="lives" id="livesDisplay">❤️❤️❤️</div>
+            <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+        </div>
+
+        <div class="profile-flip-container">
+            <div class="flip-card" id="flipBayu">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h2>😎 BAYU</h2>
+                        <p>Klik untuk lihat detail</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <ul style="list-style:none; text-align:left;">
+                            <li>💘 Ganteng level dewa</li>
+                            <li>🧊 Kalem kayak es batu</li>
+                            <li>😎 Sok cool tapi perhatian</li>
+                            <li>💬 Suka chat duluan</li>
+                            <li>❤️ Sayang Liza maksimal</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card" id="flipLiza">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <h2>👑 LIZA</h2>
+                        <p>Klik untuk lihat detail</p>
+                    </div>
+                    <div class="flip-card-back">
+                        <ul style="list-style:none; text-align:left;">
+                            <li>🌸 Manisnya kebangetan</li>
+                            <li>😝 Suka ngambek tapi lucu</li>
+                            <li>😭 Sering bilang "gapapa"</li>
+                            <li>💖 Cinta Bayu setengah mati</li>
+                            <li>👑 Ratu alay sejagat</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <div id="questionContainer"></div>
+
+        <button class="btn-next" id="nextBtn" onclick="nextQuestion()">Lanjut ➡️</button>
+        <button class="btn-finish" id="finishBtn" onclick="finishQuest()">Selesai! 💖</button>
+
+        <div class="result-section" id="resultSection">
+            <h2 style="color:#c4003a;">HASIL QUEST</h2>
+            <p class="result-score" id="scoreDisplay"></p>
+            <p class="result-message" id="messageDisplay"></p>
+            <div class="share-buttons">
+                <a class="share-btn btn-wa-bayu" id="waBayuBtn" href="#" target="_blank">
+                    💌 Kirim ke Bayu
+                </a>
+                <a class="share-btn btn-wa-group" id="waGroupBtn" href="#" target="_blank">
+                    👥 Kirim ke Grup WA
+                </a>
+            </div>
+            <button class="btn-reset" onclick="resetQuest()">🔄 Ulangi Quest</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="introModal">
+        <div class="modal-content">
+            <h2>🎉 Selamat Datang!</h2>
+            <p>Quest Cinta Bayu & Liza siap dimulai.<br>Jawab semua pertanyaan dengan jujur (walaupun jawabannya sudah pasti muji Bayu 😭).</p>
+            <button class="btn-start" onclick="startQuest()">MULAI QUEST</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Seberapa ganteng Bayu menurut kamu?",
+                options: [
+                    { text: "Ganteng banget, bikin lupa nama sendiri", points: 10 },
+                    { text: "Ganteng level dewa, bikin salfok", points: 8 },
+                    { text: "Gantengnya kebangetan, bikin iri semua cowok", points: 9 },
+                    { text: "Ganteng maksimal, ga ada obat", points: 10 }
+                ]
+            },
+            {
+                question: "Apa yang paling keren dari Bayu?",
+                options: [
+                    { text: "Senyumnya bikin meleleh", points: 10 },
+                    { text: "Cara dia perhatian diam-diam", points: 10 },
+                    { text: "Kesabarannya ngadepin Liza", points: 10 },
+                    { text: "Semua di atas, pokoknya keren", points: 12 }
+                ]
+            },
+            {
+                question: "Bayu itu kalemnya kayak apa?",
+                options: [
+                    { text: "Kalem kayak es batu di kutub", points: 8 },
+                    { text: "Kalem tapi bikin nyaman", points: 9 },
+                    { text: "Kalemnya bikin gemas sendiri", points: 10 },
+                    { text: "Kalem level dewa, ga ada tandingan", points: 11 }
+                ]
+            },
+            {
+                question: "Menurut Liza, Bayu itu...",
+                options: [
+                    { text: "Satu-satunya yang bikin hati adem", points: 10 },
+                    { text: "Paling ngerti perasaan Liza", points: 10 },
+                    { text: "Paling sabar ngadepin Liza yang suka ngambek", points: 10 },
+                    { text: "Cowok idaman sepanjang masa", points: 12 }
+                ]
+            },
+            {
+                question: "Bayu kalau chat Liza biasanya...",
+                options: [
+                    { text: "Selalu bales cepet walau sok cool", points: 10 },
+                    { text: "Nanya kabar padahal baru aja ketemu", points: 9 },
+                    { text: "Kirim voice note gemes", points: 10 },
+                    { text: "Bikin Liza senyum sendiri", points: 11 }
+                ]
+            },
+            {
+                question: "Apa bukti Bayu sayang Liza?",
+                options: [
+                    { text: "Rela anter jemput kapan pun", points: 10 },
+                    { text: "Inget semua tanggal penting", points: 10 },
+                    { text: "Nerima semua sifat alay Liza", points: 10 },
+                    { text: "Semua jawaban benar, pokoknya sayang", points: 12 }
+                ]
+            },
+            {
+                question: "Kalau Bayu jadi pacar, dia tuh...",
+                options: [
+                    { text: "Paling setia sedunia", points: 10 },
+                    { text: "Paling romantis tanpa banyak omong", points: 10 },
+                    { text: "Paling bisa bikin Liza tenang", points: 10 },
+                    { text: "Pacaran goals banget", points: 12 }
+                ]
+            },
+            {
+                question: "Bayu kalau ngeliat Liza ngambek, dia...",
+                options: [
+                    { text: "Langsung panik dan nanya kenapa", points: 10 },
+                    { text: "Diem dulu tapi dalam hati cemas", points: 9 },
+                    { text: "Beliin seblak biar Liza baikan", points: 11 },
+                    { text: "Bikin Liza ketawa dengan tingkah konyol", points: 10 }
+                ]
+            },
+            {
+                question: "Hal yang paling Bayu sukai dari Liza?",
+                options: [
+                    { text: "Manisnya yang bikin lupa masalah", points: 10 },
+                    { text: "Ketawanya yang bikin gemas", points: 9 },
+                    { text: "Cara dia merajuk yang aneh tapi lucu", points: 10 },
+                    { text: "Semuanya, dari ujung rambut sampe hati", points: 12 }
+                ]
+            },
+            {
+                question: "Bayu tuh paling cocok jadi...",
+                options: [
+                    { text: "Pacar terbaik sepanjang sejarah", points: 10 },
+                    { text: "Suami idaman masa depan", points: 10 },
+                    { text: "Teman curhat paling setia", points: 9 },
+                    { text: "Semua peran di atas", points: 12 }
+                ]
+            },
+            {
+                question: "Kalo Bayu disuruh deskripsiin Liza dalam satu kata...",
+                options: [
+                    { text: "Sempurna", points: 10 },
+                    { text: "Imut", points: 8 },
+                    { text: "Gemesin", points: 9 },
+                    { text: "Gak bisa dideskripsiin, terlalu indah", points: 12 }
+                ]
+            },
+            {
+                question: "Bayu itu kalem, tapi kalau Liza lagi butuh...",
+                options: [
+                    { text: "Bayu langsung sigap bantu", points: 10 },
+                    { text: "Bayu telepon duluan", points: 9 },
+                    { text: "Bayu dateng walau cuma buat nemenin", points: 10 },
+                    { text: "Bayu berubah jadi pahlawan", points: 11 }
+                ]
+            },
+            {
+                question: "Menurut kamu, Bayu itu...",
+                options: [
+                    { text: "Terlalu baik buat ukuran manusia", points: 10 },
+                    { text: "Bidadara yang nyasar ke bumi", points: 9 },
+                    { text: "Hadiah terindah dari semesta", points: 10 },
+                    { text: "Alasan Liza tersenyum tiap hari", points: 12 }
+                ]
+            },
+            {
+                question: "Bayu kalo disuruh milih, dia lebih milih...",
+                options: [
+                    { text: "Tetap jadi Bayu yang Liza kenal", points: 10 },
+                    { text: "Selalu ada buat Liza", points: 10 },
+                    { text: "Nemenin Liza sampe tua", points: 12 },
+                    { text: "Semua pilihan di atas", points: 11 }
+                ]
+            },
+            {
+                question: "Terakhir, apakah Bayu pantas dapat Liza?",
+                options: [
+                    { text: "Sangat pantas, mereka jodoh", points: 10 },
+                    { text: "Liza yang beruntung dapet Bayu", points: 10 },
+                    { text: "Bayu yang beruntung dapet Liza", points: 10 },
+                    { text: "Mereka berdua sama-sama beruntung", points: 12 }
+                ]
+            }
+        ];
+
+        let currentQuestion = 0;
+        let selectedOption = null;
+        let totalScore = 0;
+        let answers = [];
+        let timerInterval = null;
+        let timeLeft = 15;
+        let lives = 3;
+        let maxQuestions = questions.length;
+        let quizActive = false;
+
+        const questionContainer = document.getElementById('questionContainer');
+        const nextBtn = document.getElementById('nextBtn');
+        const finishBtn = document.getElementById('finishBtn');
+        const progressFill = document.getElementById('progressFill');
+        const resultSection = document.getElementById('resultSection');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const messageDisplay = document.getElementById('messageDisplay');
+        const waBayuBtn = document.getElementById('waBayuBtn');
+        const waGroupBtn = document.getElementById('waGroupBtn');
+        const livesDisplay = document.getElementById('livesDisplay');
+        const introModal = document.getElementById('introModal');
+        const themeToggle = document.getElementById('themeToggle');
+        const countdownEl = document.getElementById('countdown');
+
+        function updateLives() {
+            let hearts = '';
+            for (let i = 0; i < lives; i++) hearts += '❤️';
+            for (let i = lives; i < 3; i++) hearts += '🖤';
+            livesDisplay.textContent = hearts;
+        }
+
+        function startQuest() {
+            introModal.classList.remove('show');
+            quizActive = true;
+            shuffleQuestions();
+            renderQuestion();
+            updateLives();
+            startTimer();
+            updateProgress();
+        }
+
+        function shuffleQuestions() {
+            for (let i = questions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [questions[i], questions[j]] = [questions[j], questions[i]];
+            }
+        }
+
+        function renderQuestion() {
+            if (currentQuestion >= maxQuestions || lives <= 0) {
+                finishQuest();
+                return;
+            }
+            const q = questions[currentQuestion];
+            let html = `<div class="question-card">
+                <h2>${currentQuestion + 1}. ${q.question}</h2>
+                <div class="timer-bar"><div class="timer-fill" id="timerFill" style="width:100%"></div></div>
+                <div class="options">`;
+            q.options.forEach((opt, idx) => {
+                html += `<button class="option-btn" onclick="selectOption(${idx})" id="opt-${idx}">${opt.text}</button>`;
+            });
+            html += `</div></div>`;
+            questionContainer.innerHTML = html;
+            selectedOption = null;
+            resetTimer();
+            if (currentQuestion === maxQuestions - 1) {
+                nextBtn.style.display = 'none';
+                finishBtn.style.display = 'inline-block';
+            } else {
+                nextBtn.style.display = 'inline-block';
+                finishBtn.style.display = 'none';
+            }
+        }
+
+        function selectOption(idx) {
+            if (!quizActive) return;
+            selectedOption = idx;
+            document.querySelectorAll('.option-btn').forEach((btn, i) => {
+                if (i === idx) btn.classList.add('selected');
+                else btn.classList.remove('selected');
+            });
+            answers[currentQuestion] = questions[currentQuestion].options[idx];
+            stopTimer();
+            playBeep(600, 0.15);
+        }
+
+        function nextQuestion() {
+            if (selectedOption === null) {
+                alert('Pilih jawaban dulu ya! 😭');
+                return;
+            }
+            totalScore += questions[currentQuestion].options[selectedOption].points;
+            if (currentQuestion < maxQuestions - 1) {
+                currentQuestion++;
+                renderQuestion();
+                startTimer();
+                updateProgress();
+            }
+        }
+
+        function finishQuest() {
+            if (!quizActive) return;
+            quizActive = false;
+            stopTimer();
+            if (selectedOption !== null && currentQuestion < maxQuestions) {
+                totalScore += questions[currentQuestion].options[selectedOption].points;
+            }
+            showResult();
+        }
+
+        function showResult() {
+            questionContainer.style.display = 'none';
+            nextBtn.style.display = 'none';
+            finishBtn.style.display = 'none';
+            document.querySelector('.progress-bar').style.display = 'none';
+            resultSection.style.display = 'block';
+            scoreDisplay.textContent = `Skor: ${totalScore} / ${maxQuestions * 10}`;
+            let message = '';
+            if (totalScore >= maxQuestions * 9) {
+                message = '😭💖 BAYU MEMANG SEMPURNA! LIZA HARUS NGARAH KE PELAMINAN!';
+            } else if (totalScore >= maxQuestions * 7) {
+                message = '😍 Bayu hampir sempurna, tinggal dikit lagi!';
+            } else {
+                message = '😅 Bayu tetap luar biasa kok, cuma quest-nya kurang maksimal.';
+            }
+            messageDisplay.textContent = message;
+            saveHighScore(totalScore);
+            spawnConfetti();
+            const text = `*HASIL QUEST CINTA BAYU & LIZA* 💖\n` +
+                `Skor: ${totalScore}/${maxQuestions * 10}\n` +
+                `Pesan: ${message}\n\n` +
+                `Bayu terbukti cowok paling ganteng, kalem, perhatian, dan sayang Liza! 😭✨\n` +
+                `#BayuXLiza #CoupleGoals #AlayDewa`;
+            const encodedText = encodeURIComponent(text);
+            const bayuNumber = '6283890031202';
+            const groupLink = 'https://chat.whatsapp.com/DysSO2vChZ30F3qW5lzWGZ?s=cl&p=a&ilr=1';
+            waBayuBtn.href = `https://wa.me/${bayuNumber}?text=${encodedText}`;
+            waGroupBtn.href = groupLink;
+        }
+
+        function resetQuest() {
+            currentQuestion = 0;
+            selectedOption = null;
+            totalScore = 0;
+            answers = [];
+            lives = 3;
+            quizActive = true;
+            shuffleQuestions();
+            questionContainer.style.display = 'block';
+            document.querySelector('.progress-bar').style.display = 'block';
+            resultSection.style.display = 'none';
+            renderQuestion();
+            updateLives();
+            startTimer();
+            updateProgress();
+            nextBtn.style.display = 'inline-block';
+            finishBtn.style.display = 'none';
+        }
+
+        function startTimer() {
+            timeLeft = 15;
+            updateTimerBar();
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateTimerBar();
+                if (timeLeft <= 0) {
+                    stopTimer();
+                    lives--;
+                    updateLives();
+                    if (lives <= 0) {
+                        finishQuest();
+                    } else {
+                        totalScore += 0;
+                        if (currentQuestion < maxQuestions - 1) {
+                            currentQuestion++;
+                            renderQuestion();
+                            startTimer();
+                            updateProgress();
+                        } else {
+                            finishQuest();
+                        }
+                    }
+                }
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+
+        function resetTimer() {
+            stopTimer();
+            startTimer();
+        }
+
+        function updateTimerBar() {
+            const fill = document.getElementById('timerFill');
+            if (fill) {
+                fill.style.width = (timeLeft / 15) * 100 + '%';
+            }
+        }
+
+        function updateProgress() {
+            const percent = (currentQuestion / maxQuestions) * 100;
+            progressFill.style.width = percent + '%';
+        }
+
+        function spawnConfetti() {
+            const colors = ['#ff2e63', '#ff9a9e', '#ffb6c1', '#ff0a54', '#ff477e', '#fecfef', '#ffffff'];
+            for (let i = 0; i < 80; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.left = Math.random() * 100 + 'vw';
+                piece.style.top = '-20px';
+                piece.style.width = Math.random() * 10 + 5 + 'px';
+                piece.style.height = Math.random() * 10 + 5 + 'px';
+                piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.animationDuration = Math.random() * 2 + 1 + 's';
+                piece.style.animationDelay = Math.random() * 0.5 + 's';
+                document.body.appendChild(piece);
+                setTimeout(() => {
+                    piece.remove();
+                }, 3000);
+            }
+        }
+
+        let audioCtx = null;
+        function playBeep(freq, duration) {
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.value = freq;
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {}
+        }
+
+        function saveHighScore(score) {
+            const high = localStorage.getItem('bayuLizaHighScore') || 0;
+            if (score > high) {
+                localStorage.setItem('bayuLizaHighScore', score);
+                messageDisplay.textContent += ` 🏆 Rekor baru!`;
+            }
+        }
+
+        function updateCountdown() {
+            const target = new Date('2026-07-26T00:00:00');
+            const now = new Date();
+            const diff = target - now;
+            if (diff <= 0) {
+                countdownEl.textContent = '🎉 ANNIVERSARY!';
+                return;
+            }
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            countdownEl.textContent = `💞 ${days} Hari ${hours} Jam ${minutes} Menit ${seconds} Detik`;
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                themeToggle.textContent = '☀️ Light Mode';
+            } else {
+                themeToggle.textContent = '🌙 Dark Mode';
+            }
+        });
+
+        document.getElementById('flipBayu').addEventListener('click', function() {
+            this.classList.toggle('flipped');
+        });
+        document.getElementById('flipLiza').addEventListener('click', function() {
+            this.classList.toggle('flipped');
+        });
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        introModal.classList.add('show');
+    </script>
+</body>
+</html>
