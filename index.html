@@ -251,27 +251,29 @@
             border-color: #ff2e63;
         }
 
-        .timer-bar {
-            background: #fff;
-            height: 10px;
-            border-radius: 10px;
-            margin: 10px 0;
-            overflow: hidden;
-            border: 1px solid #ff2e63;
+        .option-btn.negative {
+            border-color: #ccc;
+            background: #f9f9f9;
+            color: #999;
         }
-        .timer-fill {
-            height: 100%;
-            width: 100%;
-            background: linear-gradient(90deg, #ff9a9e, #ff2e63);
-            border-radius: 10px;
-            transition: width 1s linear;
+        body.dark-mode .option-btn.negative {
+            background: #1e2a3a;
+            border-color: #555;
+            color: #aaa;
+        }
+        .option-btn.negative:hover {
+            background: #ff5555;
+            color: white;
+            border-color: #ff5555;
+            box-shadow: 0 5px 15px rgba(255,0,0,0.4);
         }
 
-        .lives {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 1.5rem;
+        .error-message {
+            color: #ff0000;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-top: 10px;
+            min-height: 20px;
         }
 
         .btn-next, .btn-finish, .btn-start {
@@ -498,7 +500,6 @@
 
         <div class="top-info">
             <div class="countdown-box" id="countdown"></div>
-            <div class="lives" id="livesDisplay">❤️❤️❤️</div>
             <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
         </div>
 
@@ -567,7 +568,7 @@
     <div class="modal-overlay" id="introModal">
         <div class="modal-content">
             <h2>🎉 Selamat Datang!</h2>
-            <p>Quest Cinta Bayu & Liza siap dimulai.<br>Jawab semua pertanyaan dengan jujur (walaupun jawabannya sudah pasti muji Bayu 😭).</p>
+            <p>Quest Cinta Bayu & Liza siap dimulai.<br>Jawab semua pertanyaan dengan jujur.<br>Hati-hati memilih, hanya ada satu jawaban yang benar! 😭</p>
             <button class="btn-start" onclick="startQuest()">MULAI QUEST</button>
         </div>
     </div>
@@ -577,136 +578,151 @@
             {
                 question: "Seberapa ganteng Bayu menurut kamu?",
                 options: [
-                    { text: "Ganteng banget, bikin lupa nama sendiri", points: 10 },
-                    { text: "Ganteng level dewa, bikin salfok", points: 8 },
-                    { text: "Gantengnya kebangetan, bikin iri semua cowok", points: 9 },
-                    { text: "Ganteng maksimal, ga ada obat", points: 10 }
+                    { text: "Ganteng banget, bikin lupa nama sendiri", points: 10, negative: false },
+                    { text: "Biasa aja, kayak tempe", points: 0, negative: true },
+                    { text: "Ganteng? Boro-boro, malah bikin mual", points: 0, negative: true },
+                    { text: "Jelek banget, kasian liatnya", points: 0, negative: true },
+                    { text: "Gak ada ganteng-gantengnya sama sekali", points: 0, negative: true }
                 ]
             },
             {
                 question: "Apa yang paling keren dari Bayu?",
                 options: [
-                    { text: "Senyumnya bikin meleleh", points: 10 },
-                    { text: "Cara dia perhatian diam-diam", points: 10 },
-                    { text: "Kesabarannya ngadepin Liza", points: 10 },
-                    { text: "Semua di atas, pokoknya keren", points: 12 }
+                    { text: "Senyumnya bikin meleleh", points: 10, negative: false },
+                    { text: "Gak ada yang keren, semua norak", points: 0, negative: true },
+                    { text: "Keren? Dia mah ketinggalan zaman", points: 0, negative: true },
+                    { text: "Paling keren itu kalau dia diem, soalnya ngomongnya nyebelin", points: 0, negative: true },
+                    { text: "Gak ada sisi kerennya, cuma modal cool doang", points: 0, negative: true }
                 ]
             },
             {
                 question: "Bayu itu kalemnya kayak apa?",
                 options: [
-                    { text: "Kalem kayak es batu di kutub", points: 8 },
-                    { text: "Kalem tapi bikin nyaman", points: 9 },
-                    { text: "Kalemnya bikin gemas sendiri", points: 10 },
-                    { text: "Kalem level dewa, ga ada tandingan", points: 11 }
+                    { text: "Kalem kayak es batu di kutub", points: 10, negative: false },
+                    { text: "Kalem? Dia mah cuek bebek", points: 0, negative: true },
+                    { text: "Diem bukan kalem, tapi karena gak tau mau ngomong apa", points: 0, negative: true },
+                    { text: "Kalem apaan, dia mah acuh tak acuh", points: 0, negative: true },
+                    { text: "Bukan kalem, tapi sombong", points: 0, negative: true }
                 ]
             },
             {
                 question: "Menurut Liza, Bayu itu...",
                 options: [
-                    { text: "Satu-satunya yang bikin hati adem", points: 10 },
-                    { text: "Paling ngerti perasaan Liza", points: 10 },
-                    { text: "Paling sabar ngadepin Liza yang suka ngambek", points: 10 },
-                    { text: "Cowok idaman sepanjang masa", points: 12 }
+                    { text: "Satu-satunya yang bikin hati adem", points: 10, negative: false },
+                    { text: "Cowok paling nyebelin sedunia", points: 0, negative: true },
+                    { text: "Sumber masalah", points: 0, negative: true },
+                    { text: "Bikin pusing kepala", points: 0, negative: true },
+                    { text: "Gak ada bagusnya", points: 0, negative: true }
                 ]
             },
             {
                 question: "Bayu kalau chat Liza biasanya...",
                 options: [
-                    { text: "Selalu bales cepet walau sok cool", points: 10 },
-                    { text: "Nanya kabar padahal baru aja ketemu", points: 9 },
-                    { text: "Kirim voice note gemes", points: 10 },
-                    { text: "Bikin Liza senyum sendiri", points: 11 }
+                    { text: "Selalu bales cepet walau sok cool", points: 10, negative: false },
+                    { text: "Balesnya lama, bikin nunggu", points: 0, negative: true },
+                    { text: "Cuma baca doang, gak dibales", points: 0, negative: true },
+                    { text: "Chat-nya singkat, nyebelin", points: 0, negative: true },
+                    { text: "Sering online tapi gak bales", points: 0, negative: true }
                 ]
             },
             {
                 question: "Apa bukti Bayu sayang Liza?",
                 options: [
-                    { text: "Rela anter jemput kapan pun", points: 10 },
-                    { text: "Inget semua tanggal penting", points: 10 },
-                    { text: "Nerima semua sifat alay Liza", points: 10 },
-                    { text: "Semua jawaban benar, pokoknya sayang", points: 12 }
+                    { text: "Rela anter jemput kapan pun", points: 10, negative: false },
+                    { text: "Gak ada buktinya, cuma janji manis", points: 0, negative: true },
+                    { text: "Dia sayang sama cewek lain", points: 0, negative: true },
+                    { text: "Kalau butuh aja baru perhatian", points: 0, negative: true },
+                    { text: "Gak pernah kasih perhatian", points: 0, negative: true }
                 ]
             },
             {
                 question: "Kalau Bayu jadi pacar, dia tuh...",
                 options: [
-                    { text: "Paling setia sedunia", points: 10 },
-                    { text: "Paling romantis tanpa banyak omong", points: 10 },
-                    { text: "Paling bisa bikin Liza tenang", points: 10 },
-                    { text: "Pacaran goals banget", points: 12 }
+                    { text: "Paling setia sedunia", points: 10, negative: false },
+                    { text: "Suka PHP (pemberi harapan palsu)", points: 0, negative: true },
+                    { text: "Gak tau setia, malah suka ngilang", points: 0, negative: true },
+                    { text: "Pacaran cuma buat gaya-gayaan", points: 0, negative: true },
+                    { text: "Bakal nyakitin terus", points: 0, negative: true }
                 ]
             },
             {
                 question: "Bayu kalau ngeliat Liza ngambek, dia...",
                 options: [
-                    { text: "Langsung panik dan nanya kenapa", points: 10 },
-                    { text: "Diem dulu tapi dalam hati cemas", points: 9 },
-                    { text: "Beliin seblak biar Liza baikan", points: 11 },
-                    { text: "Bikin Liza ketawa dengan tingkah konyol", points: 10 }
+                    { text: "Langsung panik dan nanya kenapa", points: 10, negative: false },
+                    { text: "Diem aja, gak peduli", points: 0, negative: true },
+                    { text: "Malah pergi ninggalin Liza", points: 0, negative: true },
+                    { text: "Ngelawak jelek, bikin makin kesel", points: 0, negative: true },
+                    { text: "Ikut-ikutan ngambek", points: 0, negative: true }
                 ]
             },
             {
                 question: "Hal yang paling Bayu sukai dari Liza?",
                 options: [
-                    { text: "Manisnya yang bikin lupa masalah", points: 10 },
-                    { text: "Ketawanya yang bikin gemas", points: 9 },
-                    { text: "Cara dia merajuk yang aneh tapi lucu", points: 10 },
-                    { text: "Semuanya, dari ujung rambut sampe hati", points: 12 }
+                    { text: "Manisnya yang bikin lupa masalah", points: 10, negative: false },
+                    { text: "Gak tau, dia gak pernah bilang", points: 0, negative: true },
+                    { text: "Paling suka kalau Liza lagi diem", points: 0, negative: true },
+                    { text: "Kayaknya gak suka apa-apa", points: 0, negative: true },
+                    { text: "Sukanya cuma kalau lagi butuh", points: 0, negative: true }
                 ]
             },
             {
                 question: "Bayu tuh paling cocok jadi...",
                 options: [
-                    { text: "Pacar terbaik sepanjang sejarah", points: 10 },
-                    { text: "Suami idaman masa depan", points: 10 },
-                    { text: "Teman curhat paling setia", points: 9 },
-                    { text: "Semua peran di atas", points: 12 }
+                    { text: "Pacar terbaik sepanjang sejarah", points: 10, negative: false },
+                    { text: "Tukang PHP", points: 0, negative: true },
+                    { text: "Cowok yang suka ngilang", points: 0, negative: true },
+                    { text: "Mantan terburuk", points: 0, negative: true },
+                    { text: "Gak cocok jadi apa-apa", points: 0, negative: true }
                 ]
             },
             {
                 question: "Kalo Bayu disuruh deskripsiin Liza dalam satu kata...",
                 options: [
-                    { text: "Sempurna", points: 10 },
-                    { text: "Imut", points: 8 },
-                    { text: "Gemesin", points: 9 },
-                    { text: "Gak bisa dideskripsiin, terlalu indah", points: 12 }
+                    { text: "Sempurna", points: 10, negative: false },
+                    { text: "Biasa aja", points: 0, negative: true },
+                    { text: "Nyebelin", points: 0, negative: true },
+                    { text: "Gak penting", points: 0, negative: true },
+                    { text: "Beban", points: 0, negative: true }
                 ]
             },
             {
                 question: "Bayu itu kalem, tapi kalau Liza lagi butuh...",
                 options: [
-                    { text: "Bayu langsung sigap bantu", points: 10 },
-                    { text: "Bayu telepon duluan", points: 9 },
-                    { text: "Bayu dateng walau cuma buat nemenin", points: 10 },
-                    { text: "Bayu berubah jadi pahlawan", points: 11 }
+                    { text: "Bayu langsung sigap bantu", points: 10, negative: false },
+                    { text: "Dia malah sibuk sendiri", points: 0, negative: true },
+                    { text: "Gak peka, gak tau Liza butuh", points: 0, negative: true },
+                    { text: "Nunggu disuruh dulu", points: 0, negative: true },
+                    { text: "Pura-pura gak tau", points: 0, negative: true }
                 ]
             },
             {
                 question: "Menurut kamu, Bayu itu...",
                 options: [
-                    { text: "Terlalu baik buat ukuran manusia", points: 10 },
-                    { text: "Bidadara yang nyasar ke bumi", points: 9 },
-                    { text: "Hadiah terindah dari semesta", points: 10 },
-                    { text: "Alasan Liza tersenyum tiap hari", points: 12 }
+                    { text: "Terlalu baik buat ukuran manusia", points: 10, negative: false },
+                    { text: "Biasa aja, gak spesial", points: 0, negative: true },
+                    { text: "Banyak bohongnya", points: 0, negative: true },
+                    { text: "Gak bisa diandalkan", points: 0, negative: true },
+                    { text: "Malah bikin repot", points: 0, negative: true }
                 ]
             },
             {
                 question: "Bayu kalo disuruh milih, dia lebih milih...",
                 options: [
-                    { text: "Tetap jadi Bayu yang Liza kenal", points: 10 },
-                    { text: "Selalu ada buat Liza", points: 10 },
-                    { text: "Nemenin Liza sampe tua", points: 12 },
-                    { text: "Semua pilihan di atas", points: 11 }
+                    { text: "Tetap jadi Bayu yang Liza kenal", points: 10, negative: false },
+                    { text: "Pergi ninggalin Liza", points: 0, negative: true },
+                    { text: "Cari cewek lain", points: 0, negative: true },
+                    { text: "Main game terus", points: 0, negative: true },
+                    { text: "Gak tau, dia plin-plan", points: 0, negative: true }
                 ]
             },
             {
                 question: "Terakhir, apakah Bayu pantas dapat Liza?",
                 options: [
-                    { text: "Sangat pantas, mereka jodoh", points: 10 },
-                    { text: "Liza yang beruntung dapet Bayu", points: 10 },
-                    { text: "Bayu yang beruntung dapet Liza", points: 10 },
-                    { text: "Mereka berdua sama-sama beruntung", points: 12 }
+                    { text: "Sangat pantas, mereka jodoh", points: 10, negative: false },
+                    { text: "Tidak pantas sama sekali", points: 0, negative: true },
+                    { text: "Liza terlalu baik buat Bayu", points: 0, negative: true },
+                    { text: "Bayu gak layak", points: 0, negative: true },
+                    { text: "Mending Liza cari yang lain", points: 0, negative: true }
                 ]
             }
         ];
@@ -715,11 +731,9 @@
         let selectedOption = null;
         let totalScore = 0;
         let answers = [];
-        let timerInterval = null;
-        let timeLeft = 15;
-        let lives = 3;
         let maxQuestions = questions.length;
         let quizActive = false;
+        let negativeClicked = false;
 
         const questionContainer = document.getElementById('questionContainer');
         const nextBtn = document.getElementById('nextBtn');
@@ -730,25 +744,15 @@
         const messageDisplay = document.getElementById('messageDisplay');
         const waBayuBtn = document.getElementById('waBayuBtn');
         const waGroupBtn = document.getElementById('waGroupBtn');
-        const livesDisplay = document.getElementById('livesDisplay');
         const introModal = document.getElementById('introModal');
         const themeToggle = document.getElementById('themeToggle');
         const countdownEl = document.getElementById('countdown');
-
-        function updateLives() {
-            let hearts = '';
-            for (let i = 0; i < lives; i++) hearts += '❤️';
-            for (let i = lives; i < 3; i++) hearts += '🖤';
-            livesDisplay.textContent = hearts;
-        }
 
         function startQuest() {
             introModal.classList.remove('show');
             quizActive = true;
             shuffleQuestions();
             renderQuestion();
-            updateLives();
-            startTimer();
             updateProgress();
         }
 
@@ -760,22 +764,24 @@
         }
 
         function renderQuestion() {
-            if (currentQuestion >= maxQuestions || lives <= 0) {
+            if (currentQuestion >= maxQuestions) {
                 finishQuest();
                 return;
             }
             const q = questions[currentQuestion];
             let html = `<div class="question-card">
                 <h2>${currentQuestion + 1}. ${q.question}</h2>
-                <div class="timer-bar"><div class="timer-fill" id="timerFill" style="width:100%"></div></div>
                 <div class="options">`;
             q.options.forEach((opt, idx) => {
-                html += `<button class="option-btn" onclick="selectOption(${idx})" id="opt-${idx}">${opt.text}</button>`;
+                const negClass = opt.negative ? 'negative' : '';
+                html += `<button class="option-btn ${negClass}" onclick="handleOption(${idx})" id="opt-${idx}">${opt.text}</button>`;
             });
-            html += `</div></div>`;
+            html += `</div>
+                <div class="error-message" id="errorMessage"></div>
+            </div>`;
             questionContainer.innerHTML = html;
             selectedOption = null;
-            resetTimer();
+            negativeClicked = false;
             if (currentQuestion === maxQuestions - 1) {
                 nextBtn.style.display = 'none';
                 finishBtn.style.display = 'inline-block';
@@ -785,28 +791,35 @@
             }
         }
 
-        function selectOption(idx) {
+        function handleOption(idx) {
             if (!quizActive) return;
+            const opt = questions[currentQuestion].options[idx];
+            if (opt.negative) {
+                const btn = document.getElementById(`opt-${idx}`);
+                if (btn) {
+                    btn.remove();
+                }
+                document.getElementById('errorMessage').textContent = '❌ Jawaban salah! Coba lagi! 😭';
+                return;
+            }
+            if (selectedOption !== null) return;
             selectedOption = idx;
             document.querySelectorAll('.option-btn').forEach((btn, i) => {
                 if (i === idx) btn.classList.add('selected');
                 else btn.classList.remove('selected');
             });
-            answers[currentQuestion] = questions[currentQuestion].options[idx];
-            stopTimer();
-            playBeep(600, 0.15);
+            document.getElementById('errorMessage').textContent = '';
         }
 
         function nextQuestion() {
             if (selectedOption === null) {
-                alert('Pilih jawaban dulu ya! 😭');
+                alert('Pilih jawaban yang benar dulu ya! 😭');
                 return;
             }
             totalScore += questions[currentQuestion].options[selectedOption].points;
             if (currentQuestion < maxQuestions - 1) {
                 currentQuestion++;
                 renderQuestion();
-                startTimer();
                 updateProgress();
             }
         }
@@ -814,7 +827,6 @@
         function finishQuest() {
             if (!quizActive) return;
             quizActive = false;
-            stopTimer();
             if (selectedOption !== null && currentQuestion < maxQuestions) {
                 totalScore += questions[currentQuestion].options[selectedOption].points;
             }
@@ -829,9 +841,9 @@
             resultSection.style.display = 'block';
             scoreDisplay.textContent = `Skor: ${totalScore} / ${maxQuestions * 10}`;
             let message = '';
-            if (totalScore >= maxQuestions * 9) {
+            if (totalScore === maxQuestions * 10) {
                 message = '😭💖 BAYU MEMANG SEMPURNA! LIZA HARUS NGARAH KE PELAMINAN!';
-            } else if (totalScore >= maxQuestions * 7) {
+            } else if (totalScore >= maxQuestions * 8) {
                 message = '😍 Bayu hampir sempurna, tinggal dikit lagi!';
             } else {
                 message = '😅 Bayu tetap luar biasa kok, cuma quest-nya kurang maksimal.';
@@ -856,64 +868,15 @@
             selectedOption = null;
             totalScore = 0;
             answers = [];
-            lives = 3;
             quizActive = true;
             shuffleQuestions();
             questionContainer.style.display = 'block';
             document.querySelector('.progress-bar').style.display = 'block';
             resultSection.style.display = 'none';
             renderQuestion();
-            updateLives();
-            startTimer();
             updateProgress();
             nextBtn.style.display = 'inline-block';
             finishBtn.style.display = 'none';
-        }
-
-        function startTimer() {
-            timeLeft = 15;
-            updateTimerBar();
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                updateTimerBar();
-                if (timeLeft <= 0) {
-                    stopTimer();
-                    lives--;
-                    updateLives();
-                    if (lives <= 0) {
-                        finishQuest();
-                    } else {
-                        totalScore += 0;
-                        if (currentQuestion < maxQuestions - 1) {
-                            currentQuestion++;
-                            renderQuestion();
-                            startTimer();
-                            updateProgress();
-                        } else {
-                            finishQuest();
-                        }
-                    }
-                }
-            }, 1000);
-        }
-
-        function stopTimer() {
-            if (timerInterval) {
-                clearInterval(timerInterval);
-                timerInterval = null;
-            }
-        }
-
-        function resetTimer() {
-            stopTimer();
-            startTimer();
-        }
-
-        function updateTimerBar() {
-            const fill = document.getElementById('timerFill');
-            if (fill) {
-                fill.style.width = (timeLeft / 15) * 100 + '%';
-            }
         }
 
         function updateProgress() {
@@ -938,25 +901,6 @@
                     piece.remove();
                 }, 3000);
             }
-        }
-
-        let audioCtx = null;
-        function playBeep(freq, duration) {
-            try {
-                if (!audioCtx) {
-                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                }
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'sine';
-                osc.frequency.value = freq;
-                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start();
-                osc.stop(audioCtx.currentTime + duration);
-            } catch (e) {}
         }
 
         function saveHighScore(score) {
@@ -1003,4 +947,4 @@
         introModal.classList.add('show');
     </script>
 </body>
-</html>
+                                                                                                </html>
